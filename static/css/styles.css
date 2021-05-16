@@ -1,10 +1,12 @@
 #title{
-  background-color: #509024;
+  /* background-color: #509024; */
+  background-color: #30475e;
   /* text-align: center; */
     color: white;
 }
 #trycustom{
-    background-color: #509024;
+    /* background-color: #50902; */
+    background-color: black;
     color: white;
 }
 .Upload{
@@ -14,6 +16,35 @@
   margin-bottom: 50px;
 
 }
+.emphasized{
+  text-align:center;
+  font-weight:bold;
+
+}
+.section.section-grey {
+    background-color: #fbfbfd;
+    background-color: #f1f1f3;
+    background-color: #f1f2f8;
+
+    padding: 30px 0 30px 0;
+    /*color: #eceef2;*/
+    /*background-color:#d2cfce;*/
+}
+.page-width{
+   max-width: 1200px;
+   margin:auto;
+   padding:0 20px 0 20px;
+   /*background:yellow;*/
+   }
+.section-flex-1{
+  display: flex;
+  justify-content: space-around ;
+  align-items: center;
+  margin-top:10px;
+  padding:50px 0 50px 0;
+}
+ .section-separator{ margin:150px 0}
+
 frm{
   margin:20px;
   margin-left: 50px;
@@ -30,9 +61,9 @@ form{
   font-weight: bold;
 }
 #features{
-  padding-top: 8%;
+  /* padding-top: 8%; */
   text-align: center;
-  padding-bottom: 14%;
+  padding-bottom: 3%;
 }
 .features-img{
 width:40%;
@@ -54,16 +85,7 @@ h4{
 body{
   font-family: "Montserrat";
 }
-h5{
-  padding-top: 10px;
-  text-align: center;
-  padding-bottom: 30px;
-}
-.h5{
-  padding-top: 10px;
-  text-align: center;
-  padding-bottom: 30px;
-}
+
 #title .container-fluid {
   padding: 3% 15% 7%;
 }
@@ -98,6 +120,7 @@ h5{
   padding-bottom: 8%;
     text-align: center;
 }
+
 .big-heading{
   /* color: #81b214; */
 
@@ -108,4 +131,92 @@ h5{
   padding-left: 10%;
   padding-bottom: 0%;
   margin-bottom: 0px;
+}
+
+.popup {
+    display: inline-block;
+}
+.popup .popuptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: #b1b1b1;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 20px;
+    position:relative;
+    top:50px;
+    right:150px;
+}
+.popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+
+.open-button {
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  /* cursor: pointer; */
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
 }
