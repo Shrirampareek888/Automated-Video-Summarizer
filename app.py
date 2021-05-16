@@ -30,6 +30,16 @@ def index():
     return render_template('index.html')
 
 
+@app.route('/login-page')
+def show_login_page():
+    return render_template('login.html')
+
+
+@app.route('/signup-page')
+def show_signup_page():
+    return render_template('signup.html')
+
+
 @app.route('/downloadfile/<text>', methods=['GET', 'POST'])
 @cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
 def testfn(text):
