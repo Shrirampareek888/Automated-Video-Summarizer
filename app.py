@@ -27,7 +27,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/')
 def index():
-    return render_template('dashboard.html')
+    return render_template('index.html')
 
 
 @app.route('/downloadfile/<text>', methods=['GET', 'POST'])
