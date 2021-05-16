@@ -2,7 +2,7 @@ import json
 import helpers.TextSummarization as ts
 import helpers.YoutubeHelper as yt
 from pymongo import MongoClient
-from flask import Flask, render_template, url_for, request, flash, redirect, jsonify, send_file
+from flask import Flask, render_template, url_for, request, flash, redirect, jsonify, send_file, session
 from flask_cors import CORS, cross_origin
 from flask_bcrypt import Bcrypt
 #import speech_recognition as sr
@@ -57,9 +57,24 @@ def employee_login():
     if(not bool(user_cred)):
         return render_template('signup.html')
     if(bcrypt.check_password_hash(user_cred['password'], request.form['password'])):
+        # create session variable with email
+        session['email'] = user_cred['email']
         return render_template('index.html')
     else:
         return render_template('login.html')
+
+
+@app.route("/dashboard", methods=['GET', 'POST'])
+def dashboard():
+    if 'email' not in session:
+        return render_template('login.html')
+
+
+@app.route("/edit-profile", methods=['GET', 'POST'])
+def edit():
+    if 'email' not in session:
+        return render_template('login.html')
+    pass
 
 
 if __name__ == "__main__":
