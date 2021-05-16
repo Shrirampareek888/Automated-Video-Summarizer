@@ -1,0 +1,8 @@
+flask_cors
+sklearn
+torch
+pytorch_pretrained_bert
+fpdf
+transformers
+youtube_transcript_api
+nltk
