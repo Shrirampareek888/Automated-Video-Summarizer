@@ -1,0 +1,4 @@
+full name
+email   unique!
+password
+pdfs = [..,pdf_names,...]   either files or filenames
