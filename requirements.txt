@@ -6,3 +6,5 @@ fpdf
 transformers
 youtube_transcript_api
 nltk
+flask_bcrypt
+pymongo
