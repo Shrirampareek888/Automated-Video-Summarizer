@@ -23,6 +23,7 @@ fs = gridfs.GridFS(db)
 ALLOWED_EXTENSIONS = {'mp3', 'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 cors = CORS(app, resources={r"/foo": {"origins": "*"}})
 app.config['CORS_HEADERS'] = 'Content-Type'
+app.config['SECRET_KEY'] = '14ec258c169f5c19f78385bcc83a51df7444624b2ff90449b4a9832e6fe706a1'
 
 
 @app.route('/')
@@ -32,25 +33,14 @@ def index():
 
 @app.route('/login-page')
 def show_login_page():
-    return render_template('login.html')
+    return render_template('login-signup.html')
 
 
-@app.route('/signup-page')
-def show_signup_page():
-    return render_template('signup.html')
+# @app.route('/downloadfile/<file_name>', methods=['GET', 'POST'])
+# @cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
+# def download(file_name):
 
-
-@app.route('/downloadfile/<text>', methods=['GET', 'POST'])
-@cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
-def testfn(text):
-    print("INSIDE FLASK")
-    ext_summary = ts.extractive_summary(text)
-    print("EXTRACTIVE DONE")
-    abs_summary = ts.abstractive_summary(text)
-    print("ABSTRACTIVE DONE")
-    ts.generate_pdf(ext_summary, abs_summary)
-    f = open("./static/notes.pdf", 'rb')
-    return send_file(f, attachment_filename='minutes_of_meeting.pdf')
+#     return send_file(f, attachment_filename=file_name)
 
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -60,13 +50,28 @@ def login():
     user_cred = users.find_one({'email': request.form['email']}, {
         'name': 1, 'email': 1, 'password': 1})
     if(not bool(user_cred)):
-        return render_template('signup.html')
+        return render_template('login-signup.html', message="user not found. Please Sign Up")
     if(bcrypt.check_password_hash(user_cred['password'], request.form['password'])):
         # create session variable with email
         session['email'] = user_cred['email']
         return render_template('dashboard.html', name=user_cred['name'])
     else:
-        return render_template('login.html')
+        return render_template('login-signup.html', message="incorrect password")
+
+
+@app.route("/signup", methods=['GET', 'POST'])
+def signup():
+    if(request.form['pwd'] != request.form['rpwd']):
+        return render_template('login-signup.html', message="passwords don't match")
+
+    name = request.form['fname'] + " " + request.form['lname']
+    password_hash = bcrypt.generate_password_hash(request.form['pwd'], 10)
+    user_details = {"name": name,
+                    "email": request.form['email'],
+                    "password": password_hash}
+    empr_id = db.users.insert_one(user_details).inserted_id
+    print(empr_id)
+    return render_template('login-signup.html', message="Sign up successful")
 
 
 @app.route("/generate-notes", methods=['GET', 'POST'])
@@ -105,6 +110,7 @@ def download(filename):
     data = fs.find_one(filter=dict(filename=filename))
     with open("./static/notes.pdf", "wb") as f:
         f.write(base64.b64decode(data.read()))
+    return send_file(f, attachment_filename=filename)
 
 
 if __name__ == "__main__":
