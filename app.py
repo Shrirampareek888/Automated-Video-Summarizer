@@ -7,7 +7,6 @@ from pymongo import MongoClient
 from flask import Flask, render_template, url_for, request, flash, redirect, jsonify, send_file, session
 from flask_cors import CORS, cross_origin
 from flask_bcrypt import Bcrypt
-# import speech_recognition as sr
 import os
 import sys
 sys.path.insert(0, os.getcwd()+"/helpers")
@@ -50,19 +49,19 @@ def login():
     user_cred = users.find_one({'email': request.form['email']}, {
         'name': 1, 'email': 1, 'password': 1})
     if(not bool(user_cred)):
-        return render_template('login-signup.html', message="User not found. Please Sign Up", classm="alert alert-danger")
+        return render_template('login-signup.html', message="User not found. Please Sign Up!", classm="alert alert-danger")
     if(bcrypt.check_password_hash(user_cred['password'], request.form['password'])):
         # create session variable with email
         session['email'] = user_cred['email']
         return render_template('dashboard.html', name=user_cred['name'])
     else:
-        return render_template('login-signup.html', message="Incorrect password", classm="alert alert-danger")
+        return render_template('login-signup.html', message="Incorrect password!", classm="alert alert-danger")
 
 
 @app.route("/signup", methods=['GET', 'POST'])
 def signup():
     if(request.form['pwd'] != request.form['rpwd']):
-        return render_template('login-signup.html', message="Passwords don't match", classm="alert alert-danger")
+        return render_template('login-signup.html', message="Passwords don't match!", classm="alert alert-danger")
 
     name = request.form['fname'] + " " + request.form['lname']
     password_hash = bcrypt.generate_password_hash(request.form['pwd'], 10)
