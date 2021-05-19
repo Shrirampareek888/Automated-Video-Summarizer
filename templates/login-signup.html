@@ -1,6 +1,7 @@
 <html lang="en"><head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="image/x-icon">
+        <link href="../static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Inconsolata:700">
@@ -16,7 +17,9 @@
             </ul>
         </header>
         {%if message%}
-        <h3>{{message}}</h3>
+        <div class="{{classm}} text-center" role="alert">
+            <strong> {{message}}</strong>
+          </div>
         {%endif%}
         <div id="content" class="container">
             <br>
@@ -80,6 +83,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
         <script src="../static/assets/js/signup.js" type="text/javascript"></script>
-
+        <script>
+            $('.alert').alert()
+        </script>
 
 </body></html>
