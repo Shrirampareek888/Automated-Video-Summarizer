@@ -57,7 +57,7 @@ def bertSent_embeding(sentences):
 
 def kmeans_sumIndex(sentence_embedding_list):
 
-    n_clusters = np.ceil(len(sentence_embedding_list)**0.5)
+    n_clusters = np.ceil(len(sentence_embedding_list)**0.7)
     kmeans = KMeans(n_clusters=int(n_clusters))
     kmeans = kmeans.fit(sentence_embedding_list)
 
