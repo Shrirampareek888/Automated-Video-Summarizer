@@ -7,10 +7,10 @@ import nltk
 nltk.download('stopwords')
 nltk.download('punkt')
 
-def get_transcripts(video_url): 
+def get_transcripts(video_url):
     # Parsing the URL to find the VIDEO ID
     url_data = urlparse(video_url)
-    query = url_data.query 
+    query = url_data.query
     video_id = query[2:]
 
     # Getting the transcripts
@@ -25,13 +25,12 @@ def get_transcripts(video_url):
         text+=d['text']+'. '
     return text
 
-    # Writing transcripts to the file 
+    # Writing transcripts to the file
     '''
     f = open('transcripts.txt','w+')
     f.write(text)
     print('Your video transcripts have been downloaded in the file transcripts.txt')
     f.close()
-    '''
 def create_wft(text):
     stop_words = set(stopwords.words('english'))
     ps = PorterStemmer()
@@ -47,12 +46,12 @@ def create_wft(text):
             wft[word] = 1
 
     return wft
-    
+
 def score(sentences, wft):
     s_val = dict()
     for sent in sentences:
         word_count = len(word_tokenize(sent))
-    
+
         for word_val in wft:
             if word_val in sent.lower():
                 if sent[:10] in s_val:
@@ -60,7 +59,7 @@ def score(sentences, wft):
                 else:
                     s_val[sent[:10]] = wft[word_val]
         s_val[sent[:10]] = s_val[sent[:10]]// word_count
-    
+
     return s_val
 
 def find_average_score(s_val):
@@ -84,10 +83,11 @@ def summarize(sentences,s_val,threshold):
     return summary
 
 def generate_summary(text):
-    
+
     table = create_wft(text)   # ... creating the word freuency table
     sentences = sent_tokenize(text)
     sentence_scores = score(sentences,table)
     threshold = find_average_score(sentence_scores)
     summary = summarize(sentences,sentence_scores,threshold)
     return summary
+        '''
