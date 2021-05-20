@@ -157,12 +157,12 @@ def generate_pdf(extractive, abstractive=""):
     pdf.set_font("Arial", "U", size=20)
     # open the text file in read mode
     pdf.set_text_color(255, 0, 0)
-    pdf.cell(200, 10, txt="Smart Meet", ln=1, align='C')
+    pdf.cell(200, 10, txt="You Summarizer", ln=1, align='C')
     pdf.set_text_color(0, 0, 0)
     pdf.set_font("Times", size=10)
     pdf.cell(200, 10, txt="----------------------------------------------------------------------------------------------------------", ln=3, align='C')
     pdf.set_font("Arial", "B", size=15)
-    pdf.cell(200, 10, txt="Short Summary of your meet !!!", ln=5, align='C')
+    pdf.cell(200, 10, txt="Short Summary of your Youtube Video !!!", ln=5, align='C')
 
     # insert the texts in pdf
     pdf.set_font("Times", size=10)
