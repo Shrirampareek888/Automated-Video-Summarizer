@@ -1,4 +1,4 @@
-in our CSS here we can write h3 which is. haven't linked it to our index.html page. like this color I want more of a navy. stands -
-for red green blue Google that. darker shade of blue it's not black it's. inside of this tag and so we'll close. to this div and -
-so we can say div class. equals italic I'll talk more about what. the step in our CSS using its class name. font-style:italic and 
-that will do that. the list and we'll say purple and we'll. then.
+or screen changes the layout of the. bootstrap into your application there. our index.html again you'll notice our. bootstrap has -
+in our own CSS now the. into rows and columns each row is. extra-large screen I can also say that I. just wanted to take up you k-
+now six. worry about it and then we'll have div. of the twelve you know columns that take. the middle so that's like six columns. 
+this. of stuff so that's it for this video. easier see you then.

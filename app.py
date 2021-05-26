@@ -86,10 +86,8 @@ def generate_notes():
     abs_summary = ts.abstractive_summary(text)
     print("ABSTRACTIVE DONE")
     ts.generate_pdf(ext_summary, abs_summary)
-    with open("./static/notes.pdf", "rb") as f:
-        encoded_string = base64.b64encode(f.read())
-    with fs.new_file(chunkSize=800000, filename=filename + ".pdf") as fp:
-        fp.write(encoded_string)
+    file_data = {"name": filename+'.pdf', "extsum": ext_summary, "absum": abs_summary}
+    db.pdfs.insert_one(file_data)
     f = open("./static/notes.pdf", 'rb')
     return send_file(f, attachment_filename=filename+".pdf")
 
@@ -106,20 +104,21 @@ def edit():
 @app.route("/my-pdfs", methods=['GET', 'POST'])
 def mypdfs():
     pdfs = []
-    for file in db.fs.files.find():
-        print(file['filename'])
-        pdfs.append(file['filename'])
+    for file in db.pdfs.find():
+        print(file['name'])
+        pdfs.append(file['name'])
     return render_template("mypdfs.html", pdfs=pdfs)
 
 
 @app.route("/download/<file_name>", methods=['GET', 'POST'])
 def download(file_name):
-    fs = gridfs.GridFS(db)
-    # Standard query to Mongo
-    _id = db.fs.files.find_one(dict(filename=file_name))['_id']
-    with open("./static/notes.pdf", "wb") as f:
-        f.write(base64.b64decode(fs.get(_id).read()))
-    return send_file(f, attachment_filename=file_name)
+    file = db.pdfs.find_one({"name": file_name})
+    ext_summary = file['extsum']
+    abs_summary = file['absum']
+    ts.generate_pdf(ext_summary, abs_summary)
+    print(ext_summary)
+    f = open("./static/notes.pdf", 'rb')
+    return send_file(f, attachment_filename=file_name+".pdf")
 
 
 if __name__ == "__main__":
