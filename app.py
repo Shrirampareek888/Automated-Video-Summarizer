@@ -79,18 +79,19 @@ def generate_notes():
     #     return render_template('login.html')
     url = request.form['url']
     filename = request.form['name']
+    print(filename)
     text = yt.get_transcripts(url)
     ext_summary = ts.extractive_summary(text)
     print("EXTRACTIVE DONE")
-    # abs_summary = ts.abstractive_summary(text)
-    # print("ABSTRACTIVE DONE")
-    ts.generate_pdf(ext_summary)
+    abs_summary = ts.abstractive_summary(text)
+    print("ABSTRACTIVE DONE")
+    ts.generate_pdf(ext_summary, abs_summary)
     with open("./static/notes.pdf", "rb") as f:
         encoded_string = base64.b64encode(f.read())
     with fs.new_file(chunkSize=800000, filename=filename + ".pdf") as fp:
         fp.write(encoded_string)
     f = open("./static/notes.pdf", 'rb')
-    return send_file(f, attachment_filename='minutes_of_meeting.pdf')
+    return send_file(f, attachment_filename=filename+'.pdf')
 
 
 @app.route("/edit-profile", methods=['GET', 'POST'])

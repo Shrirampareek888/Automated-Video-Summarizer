@@ -1,6 +1,0 @@
-1. Change index.html (no youtube url)  -- shriram, kishan
-2. Add login and signup functionality -- (all)
-3. User dashboard  -- shriram, kishan
-    - Summarize video (form - url )
-    - My pdfs   -- tejas(pymongo)
-    - profile (edit)
