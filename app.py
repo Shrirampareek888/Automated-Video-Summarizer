@@ -35,6 +35,10 @@ def show_login_page():
     return render_template('login-signup.html')
 
 
+
+@app.route('/dashboard')
+def show_dashboard():
+    return render_template('dashboard.html')
 # @app.route('/downloadfile/<file_name>', methods=['GET', 'POST'])
 # @cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
 # def download(file_name):
