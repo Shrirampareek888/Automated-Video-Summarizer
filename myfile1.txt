@@ -1,0 +1,4 @@
+in our CSS here we can write h3 which is. haven't linked it to our index.html page. like this color I want more of a navy. stands -
+for red green blue Google that. darker shade of blue it's not black it's. inside of this tag and so we'll close. to this div and -
+so we can say div class. equals italic I'll talk more about what. the step in our CSS using its class name. font-style:italic and 
+that will do that. the list and we'll say purple and we'll. then.

@@ -105,10 +105,14 @@ def edit():
 
 @app.route("/my-pdfs", methods=['GET', 'POST'])
 def mypdfs():
-    fs = gridfs.GridFS(db)
+    #fs = gridfs.GridFS(db)
     # Standard query to Mongo
-    data = fs.find()
-    return render_template("mypdfs.html", files=data)
+    #data = fs.find()
+    pdfs = []
+    for file in db.fs.files.find():
+        print(file['filename'])
+        pdfs.append(file['filename'])
+    return render_template("mypdfs.html", pdfs=pdfs)
 
 
 @app.route("/download/<filename>", methods=['GET', 'POST'])
@@ -123,4 +127,4 @@ def download(filename):
 
 if __name__ == "__main__":
     print('started')
-    app.run(debug=True)
+    app.run(debug=True, use_reloader=False)
