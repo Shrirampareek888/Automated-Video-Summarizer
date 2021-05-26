@@ -91,7 +91,7 @@ def generate_notes():
     with fs.new_file(chunkSize=800000, filename=filename + ".pdf") as fp:
         fp.write(encoded_string)
     f = open("./static/notes.pdf", 'rb')
-    return send_file(f, attachment_filename=filename+'.pdf')
+    return send_file(f, attachment_filename=filename+".pdf")
 
 
 @app.route("/edit-profile", methods=['GET', 'POST'])
@@ -103,7 +103,15 @@ def edit():
     print(updated_cred)
 
 
-@app.route("/my-pdfs/<filename>", methods=['GET', 'POST'])
+@app.route("/my-pdfs", methods=['GET', 'POST'])
+def mypdfs():
+    fs = gridfs.GridFS(db)
+    # Standard query to Mongo
+    data = fs.find()
+    return render_template("mypdfs.html", files=data)
+
+
+@app.route("/download/<filename>", methods=['GET', 'POST'])
 def download(filename):
     fs = gridfs.GridFS(db)
     # Standard query to Mongo
