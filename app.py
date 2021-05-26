@@ -118,7 +118,7 @@ def download(file_name):
     # Standard query to Mongo
     _id = db.fs.files.find_one(dict(filename=file_name))['_id']
     with open("./static/notes.pdf", "wb") as f:
-        f.write(base64.b64decode(fs.get('_id').read()))
+        f.write(base64.b64decode(fs.get(_id).read()))
     return send_file(f, attachment_filename=file_name)
 
 
