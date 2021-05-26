@@ -27,7 +27,9 @@ app.config['SECRET_KEY'] = '14ec258c169f5c19f78385bcc83a51df7444624b2ff90449b4a9
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    userscnt = db.users.count()
+    pdfcnt = db.pdfs.count()
+    return render_template('index.html', cnt = userscnt, pdf = pdfcnt)
 
 
 @app.route('/login-page')
@@ -74,6 +76,7 @@ def signup():
                     "password": password_hash}
     empr_id = db.users.insert_one(user_details).inserted_id
     print(empr_id)
+    
     return render_template('login-signup.html', message="Sign up successful", classm="alert alert-success")
 
 
