@@ -216,7 +216,7 @@ def generate_pdf(extractive, abstractive):
     pdf.image('./helpers/focus.jpg', 170, 8, 35)
     pdf.set_text_color(255, 0, 0)
     pdf.set_font('Arial', 'B', 30)
-    pdf.cell(190, 10, txt="Smart Meet", ln=1, align='C')
+    pdf.cell(190, 10, txt="You Summarizer", ln=1, align='C')
 
     pdf.set_text_color(0, 0, 0)
     pdf.set_font('Arial', 'I', 17)

@@ -1,4 +1,4 @@
-or screen changes the layout of the. bootstrap into your application there. our index.html again you'll notice our. bootstrap has -
-in our own CSS now the. into rows and columns each row is. extra-large screen I can also say that I. just wanted to take up you k-
-now six. worry about it and then we'll have div. of the twelve you know columns that take. the middle so that's like six columns. 
-this. of stuff so that's it for this video. easier see you then.
+arrow exclamation point doctype HTML. then the HTML closing tag and so. closing tag and so this is kind of just. world and then we-
+'re gonna close the tag. h6 with h1 being the biggest and boldest. of header and so if we have blue we can. and Fred and notice r-
+ed is not bold. an image tag SRC which is just the. an image picked out over here and we'll. your image they're not showing up yo-
+ur. space between you know the paragraph tag.
